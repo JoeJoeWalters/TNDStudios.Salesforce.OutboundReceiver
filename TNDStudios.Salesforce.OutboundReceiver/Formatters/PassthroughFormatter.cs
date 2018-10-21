@@ -67,11 +67,11 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
                 string jsonText = JsonConvert.SerializeXmlNode(doc, Formatting.Indented);
 
                 // Create a new outbound message
-                OutboundMessage outboundMessage = new OutboundMessage();
+                SOAPMessage outboundMessage = new SOAPMessage();
 
                 // Convert the Json representation to the object
-                outboundMessage = (OutboundMessage)JsonConvert.DeserializeObject(jsonText, 
-                    typeof(OutboundMessage),
+                outboundMessage = (SOAPMessage)JsonConvert.DeserializeObject(jsonText, 
+                    typeof(SOAPMessage),
                     new JsonSerializerSettings()
                     {
 
