@@ -77,12 +77,12 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 
     [Serializable]
     [JsonObject]
-    public class SOAPBody : JsonBase
+    public class SalesforceNotificationsBody : JsonBase
     {
         [JsonProperty(PropertyName = "notifications")]
         public SalesforceNotifications Notifications { get; set; }
 
-        public SOAPBody() : base()
+        public SalesforceNotificationsBody() : base()
         {
             Notifications = new SalesforceNotifications();
         }
@@ -90,10 +90,10 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 
     [Serializable]
     [JsonObject]
-    public class SOAPEnvelope : JsonBase
+    public class SOAPEnvelope<T> : JsonBase where T: new()
     {
         [JsonProperty(PropertyName = "soapenv:body")]
-        public SOAPBody Body { get; set; }
+        public T Body { get; set; }
 
         [JsonProperty(PropertyName = "@xmlns:soapenv")]
         public String Namespace { get; set; }
@@ -106,7 +106,6 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 
         public SOAPEnvelope() : base()
         {
-            Body = new SOAPBody();
         }
     }
 
@@ -127,17 +126,17 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 
     [Serializable]
     [JsonObject]
-    public class SOAPMessage : JsonBase
+    public class SOAPMessage<T> : JsonBase where T : new()
     {
         [JsonProperty(PropertyName = "soapenv:Envelope")]
-        public SOAPEnvelope Envelope { get; set; }
+        public SOAPEnvelope<T> Envelope { get; set; }
 
         [JsonProperty(PropertyName = "?xml")]
         public XMLHeader XMLHeader { get; set; }
 
         public SOAPMessage() : base()
         {
-            Envelope = new SOAPEnvelope();
+            Envelope = new SOAPEnvelope<T>();
             XMLHeader = new XMLHeader();
         }
     }
