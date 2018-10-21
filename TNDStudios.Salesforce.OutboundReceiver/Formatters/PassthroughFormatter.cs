@@ -1,0 +1,89 @@
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Xml;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json;
+using TNDStudios.Salesforce.OutboundReceiver.Objects;
+using Formatting = Newtonsoft.Json.Formatting;
+
+namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
+{
+    /// <summary>
+    /// Passthrough for data with no interferance
+    /// </summary>
+    public class PassthroughFormatter : InputFormatter
+    {
+        // Tell the system it can handle XML
+        public PassthroughFormatter()
+            => SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/xml"));
+
+        // Can always read
+        public override Boolean CanRead(InputFormatterContext context)
+            => IsSalesforceMessage(context.HttpContext.Request);
+
+        // Check the request to see if it is a Salesforce message
+        private Boolean IsSalesforceMessage(HttpRequest request)
+        => GetBody(request)
+            .Contains("http://soap.sforce.com/2005/09/outbound");
+
+        // Get the body of the request
+        private String GetBody(HttpRequest request)
+        {
+            String content = ""; // The return content
+
+            // Has the body stream been replaced with a seekable memorystream?
+            if (!request.Body.CanSeek)
+            {
+                MemoryStream stream = new MemoryStream();
+                request.Body.CopyTo(stream);
+                request.Body = stream;
+            }
+
+            // Reset the stream
+            request.Body.Seek(0, SeekOrigin.Begin); // Reset the position
+
+            // Read the incoming body stream
+            var reader = new StreamReader(request.Body);
+            content = reader.ReadToEnd(); // Get the stream content
+            reader = null; // Can't have a using statement as it kills the stream too
+
+            request.Body.Seek(0, SeekOrigin.Begin); // Reset the position
+            return content; // Send the content back
+        }
+
+        // Read the body and always be successful
+        public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
+        {
+            try
+            {
+                // Load an Xml Document with the incoming stream
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(GetBody(context.HttpContext.Request));
+
+                // Convert the XmlDocument to a Json Text representation
+                string jsonText = JsonConvert.SerializeXmlNode(doc, Formatting.Indented);
+
+                // Create a new outbound message
+                OutboundMessage outboundMessage = new OutboundMessage();
+
+                // Convert the Json representation to the object
+                outboundMessage = (OutboundMessage)JsonConvert.DeserializeObject(jsonText, 
+                    typeof(OutboundMessage),
+                    new JsonSerializerSettings()
+                    {
+
+                    });
+
+                // Return the result
+                return await InputFormatterResult.SuccessAsync(outboundMessage);
+            }
+            catch(Exception ex)
+            {
+                return await InputFormatterResult.FailureAsync();
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Body>
+    <notifications xmlns="http://soap.sforce.com/2005/09/outbound">
+      <OrganizationId>00D80000000cDmQEAU</OrganizationId>
+      <ActionId>04kC0000000GnO3IAK</ActionId>
+      <SessionId>00D80000000cDmQ!ARYAQO335etQ21v7LNKc3jaeIgpQ4o7b3oDmskn.WDsEuf05_K_irQ5Rma.gS1WTa4ZavRiVuGEfQIjc3F09ezLmPHG_6tjJ</SessionId>
+      <EnterpriseUrl>https://na8.salesforce.com/services/Soap/c/30.0/00D80000000cDmQ</EnterpriseUrl>
+      <PartnerUrl>https://na8.salesforce.com/services/Soap/u/30.0/00D80000000cDmQ</PartnerUrl>
+      <Notification>
+        <Id>04lC000001HKyQZIA1</Id>
+        <sObject xsi:type="sf:Lead" xmlns:sf="urn:sobject.enterprise.soap.sforce.com">
+          <sf:Id>00QC000001M0aNoMAJ</sf:Id>
+          <sf:Email>asd@asd1.com</sf:Email>
+        </sObject>
+      </Notification>
+      <Notification>
+        <Id>04lC000001HKyQbIAL</Id>
+        <sObject xsi:type="sf:Lead" xmlns:sf="urn:sobject.enterprise.soap.sforce.com">
+          <sf:Id>00QC000001M0aNqMAJ</sf:Id>
+          <sf:Email>ads@asd3.com</sf:Email>
+        </sObject>
+      </Notification>
+      <Notification>
+        <Id>04lC000001HKyQaIAL</Id>
+        <sObject xsi:type="sf:Lead" xmlns:sf="urn:sobject.enterprise.soap.sforce.com">
+          <sf:Id>00QC000001M0aNpMAJ</sf:Id>
+          <sf:Email>asd@asd2.com</sf:Email>
+        </sObject>
+      </Notification>
+    </notifications>
+  </soapenv:Body>
+</soapenv:Envelope>
