@@ -59,9 +59,6 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
         {
             try
             {
-                // Get the outgoing bound type to map to
-                Type modelType = context.ModelType;
-
                 // Load an Xml Document with the incoming stream
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(GetBody(context.HttpContext.Request));
@@ -70,11 +67,11 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
                 string jsonText = JsonConvert.SerializeXmlNode(doc, Formatting.Indented);
 
                 // Create a new outbound message
-                Object outboundMessage = Activator.CreateInstance(modelType);
+                SOAPMessage<SalesforceNotificationsBody> outboundMessage = new SOAPMessage<SalesforceNotificationsBody>();
 
                 // Convert the Json representation to the object
                 outboundMessage = (SOAPMessage<SalesforceNotificationsBody>)JsonConvert.DeserializeObject(jsonText, 
-                    modelType,
+                    typeof(SOAPMessage<SalesforceNotificationsBody>),
                     new JsonSerializerSettings()
                     {
 
