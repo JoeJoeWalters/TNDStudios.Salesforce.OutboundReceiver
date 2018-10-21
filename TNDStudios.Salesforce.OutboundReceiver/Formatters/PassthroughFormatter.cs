@@ -70,7 +70,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
                 SOAPMessage<SalesforceNotificationsBody> outboundMessage = new SOAPMessage<SalesforceNotificationsBody>();
 
                 // Convert the Json representation to the object
-                outboundMessage = (SOAPMessage<SalesforceNotificationsBody>)JsonConvert.DeserializeObject(jsonText, 
+                outboundMessage = (SOAPMessage<SalesforceNotificationsBody>)JsonConvert.DeserializeObject(jsonText,
                     typeof(SOAPMessage<SalesforceNotificationsBody>),
                     new JsonSerializerSettings()
                     {
@@ -80,7 +80,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
                 // Return the result
                 return await InputFormatterResult.SuccessAsync(outboundMessage);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return await InputFormatterResult.FailureAsync();
             }

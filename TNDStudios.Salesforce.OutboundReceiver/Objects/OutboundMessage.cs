@@ -90,7 +90,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 
     [Serializable]
     [JsonObject]
-    public class SOAPEnvelope<T> : JsonBase where T: new()
+    public class SOAPEnvelope<T> : JsonBase where T : new()
     {
         [JsonProperty(PropertyName = "soapenv:body")]
         public T Body { get; set; }
