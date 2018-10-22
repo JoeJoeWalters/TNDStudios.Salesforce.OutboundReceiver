@@ -12,7 +12,7 @@ namespace TNDStudios.Tools.Soap
 {
     /// <summary>
     /// Passthrough for data with no interferance
-    /// </summary>
+    /// </summary> 
     public class SoapFormatter : InputFormatter
     {
         // Tell the system it can handle XML
