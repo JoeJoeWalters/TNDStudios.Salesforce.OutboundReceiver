@@ -14,11 +14,14 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
     /// <summary>
     /// Passthrough for data with no interferance
     /// </summary>
-    public class PassthroughFormatter : InputFormatter
+    public class SOAPFormatter : InputFormatter
     {
         // Tell the system it can handle XML
-        public PassthroughFormatter()
-            => SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/xml"));
+        public SOAPFormatter()
+        {
+            SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/xml"));
+            SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/soap+xml"));
+        }
 
         // Can always read
         public override Boolean CanRead(InputFormatterContext context)

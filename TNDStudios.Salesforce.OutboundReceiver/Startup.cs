@@ -38,11 +38,9 @@ namespace TNDStudios.Salesforce.OutboundReceiver
 
             services.AddMvc(options =>
             {
-                options.InputFormatters.Clear();
-                options.InputFormatters.Add(new PassthroughFormatter());
-                options.Filters.Add(new ConsumesAttribute("application/xml"));
+                options.InputFormatters.Add(new SOAPFormatter());
             })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
