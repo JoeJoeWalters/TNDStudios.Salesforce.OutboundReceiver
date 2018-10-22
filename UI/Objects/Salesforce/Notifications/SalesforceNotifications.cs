@@ -7,7 +7,8 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 {
     [Serializable]
     [JsonObject]
-    public class SalesforceNotifications : SoapBase
+    public class SalesforceNotifications<T> : SoapBase 
+        where T : SalesforceObjectBase, new()
     {
         [JsonProperty(PropertyName = "OrganizationId")]
         public String OrganizationId { get; set; }
@@ -25,11 +26,11 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
         public String PartnerUrl { get; set; }
 
         [JsonProperty(PropertyName = "Notification")]
-        public List<SalesforceNotification> Items { get; set; }
+        public List<SalesforceNotification<T>> Items { get; set; }
 
         public SalesforceNotifications() : base()
         {
-            Items = new List<SalesforceNotification>();
+            Items = new List<SalesforceNotification<T>>();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api
         
         [Consumes(@"application/soap+xml", otherContentTypes: @"text/xml")]
         [HttpPost]
-        public Boolean Post([FromBody]SoapMessage<SalesforceNotificationsBody> message)
+        public Boolean Post([FromBody]SoapMessage<SalesforceNotificationsBody<TestSalesforceObject>> message)
         {
             return true;
         }

@@ -6,14 +6,15 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 {
     [Serializable]
     [JsonObject]
-    public class SalesforceNotificationsBody : SoapBase
+    public class SalesforceNotificationsBody<T> : SoapBase 
+        where T : SalesforceObjectBase, new()
     {
         [JsonProperty(PropertyName = "notifications")]
-        public SalesforceNotifications Notifications { get; set; }
+        public SalesforceNotifications<T> Notifications { get; set; }
 
         public SalesforceNotificationsBody() : base()
         {
-            Notifications = new SalesforceNotifications();
+            Notifications = new SalesforceNotifications<T>();
         }
     }
 }

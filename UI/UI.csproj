@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>TNDStudios.Salesforce.OutboundReceiver</AssemblyName>
+    <RootNamespace>TNDStudios.Salesforce.OutboundReceiver</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
