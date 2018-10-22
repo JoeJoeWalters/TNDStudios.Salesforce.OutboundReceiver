@@ -73,7 +73,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
                 Object outboundMessage = Activator.CreateInstance(modelType);
 
                 // Convert the Json representation to the object
-                outboundMessage = (SOAPMessage<SalesforceNotificationsBody>)JsonConvert.DeserializeObject(jsonText,
+                outboundMessage = JsonConvert.DeserializeObject(jsonText,
                     modelType,
                     new JsonSerializerSettings()
                     {
