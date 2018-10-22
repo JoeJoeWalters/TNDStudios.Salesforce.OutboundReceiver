@@ -4,17 +4,17 @@ using Newtonsoft.Json.Schema;
 using System;
 using System.Collections.Generic;
 
-namespace TNDStudios.Salesforce.OutboundReceiver.Objects
+namespace TNDStudios.Tools.Soap.Objects
 {
     [Serializable]
     [JsonObject]
-    public class JsonBase
+    public class SoapBase
     {
         [JsonExtensionData]
         public IDictionary<String, Object> PropertyBag =
             new Dictionary<String, Object>();
 
-        public JsonBase()
+        public SoapBase()
         {
             PropertyBag = new Dictionary<String, Object>();
         }

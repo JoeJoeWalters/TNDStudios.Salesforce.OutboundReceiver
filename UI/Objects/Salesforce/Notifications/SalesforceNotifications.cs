@@ -1,14 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using TNDStudios.Tools.Soap.Objects;
 
 namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 {
     [Serializable]
     [JsonObject]
-    public class SalesforceNotifications : JsonBase
+    public class SalesforceNotifications : SoapBase
     {
         [JsonProperty(PropertyName = "OrganizationId")]
         public String OrganizationId { get; set; }

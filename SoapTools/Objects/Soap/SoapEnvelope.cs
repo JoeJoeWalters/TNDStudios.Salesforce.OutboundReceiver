@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace TNDStudios.Salesforce.OutboundReceiver.Objects
+namespace TNDStudios.Tools.Soap.Objects
 {
     [Serializable]
     [JsonObject]
-    public class SOAPEnvelope<T> : JsonBase where T : new()
+    public class SoapEnvelope<T> : SoapBase where T : new()
     {
         [JsonProperty(PropertyName = "soapenv:body")]
         public T Body { get; set; }
@@ -19,7 +19,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
         [JsonProperty(PropertyName = "@xmlns:xsi")]
         public String Xsi { get; set; }
 
-        public SOAPEnvelope() : base()
+        public SoapEnvelope() : base()
         {
         }
     }

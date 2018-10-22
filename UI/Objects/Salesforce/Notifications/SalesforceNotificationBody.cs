@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
+using TNDStudios.Tools.Soap.Objects;
 
 namespace TNDStudios.Salesforce.OutboundReceiver.Objects
 {
     [Serializable]
     [JsonObject]
-    public class SalesforceNotificationsBody : JsonBase
+    public class SalesforceNotificationsBody : SoapBase
     {
         [JsonProperty(PropertyName = "notifications")]
         public SalesforceNotifications Notifications { get; set; }

@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
-using TNDStudios.Salesforce.OutboundReceiver.Formatters;
+using TNDStudios.Tools.Soap;
 
 namespace TNDStudios.Salesforce.OutboundReceiver
 {
@@ -38,7 +36,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver
 
             services.AddMvc(options =>
             {
-                options.InputFormatters.Add(new SOAPFormatter());
+                options.InputFormatters.Add(new SoapFormatter());
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

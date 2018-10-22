@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TNDStudios.Salesforce.OutboundReceiver.Objects
+namespace TNDStudios.Tools.Soap.Objects
 {
     [Serializable]
     [JsonObject]
-    public class XMLHeader : JsonBase
+    public class SoapXmlHeader : SoapBase
     {
         [JsonProperty(PropertyName = "@version")]
         public String Version { get; set; }
@@ -16,7 +16,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Objects
         [JsonProperty(PropertyName = "@encoding")]
         public String Encoding { get; set; }
 
-        public XMLHeader() : base()
+        public SoapXmlHeader() : base()
         {
         }
     }

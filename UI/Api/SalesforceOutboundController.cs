@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using TNDStudios.Salesforce.OutboundReceiver.Objects;
-using Formatting = Newtonsoft.Json.Formatting;
+using TNDStudios.Tools.Soap.Objects;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,7 +20,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api
         
         [Consumes(@"application/soap+xml", otherContentTypes: @"text/xml")]
         [HttpPost]
-        public Boolean Post([FromBody]SOAPMessage<SalesforceNotificationsBody> message)
+        public Boolean Post([FromBody]SoapMessage<SalesforceNotificationsBody> message)
         {
             return true;
         }

@@ -6,18 +6,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
-using TNDStudios.Salesforce.OutboundReceiver.Objects;
 using Formatting = Newtonsoft.Json.Formatting;
 
-namespace TNDStudios.Salesforce.OutboundReceiver.Formatters
+namespace TNDStudios.Tools.Soap
 {
     /// <summary>
     /// Passthrough for data with no interferance
     /// </summary>
-    public class SOAPFormatter : InputFormatter
+    public class SoapFormatter : InputFormatter
     {
         // Tell the system it can handle XML
-        public SOAPFormatter()
+        public SoapFormatter()
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/xml"));
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/soap+xml"));
