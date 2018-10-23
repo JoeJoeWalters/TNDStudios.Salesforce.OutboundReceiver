@@ -7,6 +7,9 @@ using TNDStudios.Tools.Soap.Objects;
 
 namespace TNDStudios.Salesforce.OutboundReceiver.Api
 {
+    /// <summary>
+    /// Controller to manage Salesforce outbound notifications
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class SalesforceOutboundController : Controller
@@ -18,6 +21,12 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api
         {
         }
         
+        /// <summary>
+        /// Provide an endpoint to recieve a soap notification message
+        /// in a structure that recognises notifications from Salesforce
+        /// </summary>
+        /// <param name="message">The translated Soap request as an object</param>
+        /// <returns>A success or failure response</returns>
         [Consumes(@"application/soap+xml", otherContentTypes: @"text/xml")]
         [HttpPost]
         public Boolean Post([FromBody]SoapMessage<SalesforceNotificationsBody<TestSalesforceObject>> message)
