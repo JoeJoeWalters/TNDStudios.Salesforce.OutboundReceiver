@@ -31,6 +31,10 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api
         [HttpPost]
         public Boolean Post([FromBody]SoapMessage<SalesforceNotificationsBody<TestSalesforceObject>> message)
         {
+            TestSalesforceObject sfObject = message.Envelope.Body.Notifications.Items[0].SalesforceObject;
+            String email = sfObject.Get<String>("Email");
+            String email2 = (String)sfObject.Get(typeof(String), "Email");
+
             return true;
         }
     }

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{FFD8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoapTools", "SoapTools\SoapTools.csproj", "{B1DDAB07-D078-40CE-A88A-C5BDDE8C4E2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonTools", "JsonTools\JsonTools.csproj", "{1A251C21-60EA-4E6F-A8C0-43C253550904}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B1DDAB07-D078-40CE-A88A-C5BDDE8C4E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1DDAB07-D078-40CE-A88A-C5BDDE8C4E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1DDAB07-D078-40CE-A88A-C5BDDE8C4E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A251C21-60EA-4E6F-A8C0-43C253550904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A251C21-60EA-4E6F-A8C0-43C253550904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A251C21-60EA-4E6F-A8C0-43C253550904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A251C21-60EA-4E6F-A8C0-43C253550904}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

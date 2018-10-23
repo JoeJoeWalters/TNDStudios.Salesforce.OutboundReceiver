@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using System;
 using System.Collections.Generic;
+using TNDStudios.Tools.Json.Objects;
 
 namespace TNDStudios.Tools.Soap.Objects
 {
@@ -13,22 +14,13 @@ namespace TNDStudios.Tools.Soap.Objects
     /// </summary>
     [Serializable]
     [JsonObject]
-    public class SoapBase
+    public class SoapBase : JsonBase
     {
-        /// <summary>
-        /// Property bag of unmapped data 
-        /// </summary>
-        [JsonExtensionData]
-        public IDictionary<String, Object> PropertyBag =
-            new Dictionary<String, Object>();
-
         /// <summary>
         /// Default Constructor to set up any undefined elements
         /// </summary>
-        public SoapBase()
+        public SoapBase() : base()
         {
-            // Create a new property bag, which should be populated, but just incase .. 
-            PropertyBag = PropertyBag ?? new Dictionary<String, Object>();
         }
     }
 
