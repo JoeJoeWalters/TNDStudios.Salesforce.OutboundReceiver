@@ -124,17 +124,17 @@ namespace TNDStudios.Salesforce.OutboundReceiver
         {
             var info = new Info()
             {
-                Title = $"Sample API {description.ApiVersion}",
+                Title = $"Salesforce Outbound API {description.ApiVersion}",
                 Version = description.ApiVersion.ToString(),
-                Description = "A sample application with Swagger, Swashbuckle, and API versioning.",
-                Contact = new Contact() { Name = "Bill Mei", Email = "bill.mei@somewhere.com" },
-                TermsOfService = "Shareware",
+                Description = "Salesforce integration with Swagger, Swashbuckle, Input Formatting and API versioning.",
+                Contact = new Contact() { Name = "Joe Walters", Email = "info@thenakeddeveloper.com" },
+                TermsOfService = "Owned By TNDStudios",
                 License = new License() { Name = "MIT", Url = "https://opensource.org/licenses/MIT" }
             };
 
             if (description.IsDeprecated)
             {
-                info.Description += " This API version has been deprecated.";
+                info.Description += " <b color=\"red\">This API version has been deprecated</b>.";
             }
 
             return info;

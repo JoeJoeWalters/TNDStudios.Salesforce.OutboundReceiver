@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using TNDStudios.Salesforce.OutboundReceiver.Objects;
 using TNDStudios.Tools.Soap.Objects;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V2
 {
     /// <summary>
@@ -12,7 +10,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V2
     /// </summary>
     [ApiVersion("2.0")]
     [ApiController]
-    [Route("api/salesforce/test")]
+    [Route("api/v{api-version:apiVersion}/salesforce/test")]
     public class SalesforceTestController : Controller
     {
         /// <summary>
@@ -32,10 +30,13 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V2
         [HttpPost]
         public Boolean Post([FromBody]SoapMessage<SalesforceNotificationsBody<TestSalesforceObject>> message)
         {
-            TestSalesforceObject sfObject = message.Envelope.Body.Notifications.Items[0].SalesforceObject;
-            String email = sfObject.Get<String>("Email");
-            String email2 = (String)sfObject.Get(typeof(String), "Email");
-
+            // For each object do something
+            message.Envelope.Body.Notifications.Items.ForEach(sfObject =>
+            {
+                String email = sfObject.Get<String>("Email");
+                String email2 = (String)sfObject.Get(typeof(String), "Email");
+            }
+            );
             return true;
         }
     }

@@ -3,16 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using TNDStudios.Salesforce.OutboundReceiver.Objects;
 using TNDStudios.Tools.Soap.Objects;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V1
 {
     /// <summary>
     /// Controller to manage Salesforce outbound notifications
     /// </summary>
+    [ApiVersion("0.9", Deprecated = true)]
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/salesforce/test")]
+    [Route("api/v{api-version:apiVersion}/salesforce/test")]
     public class SalesforceTestController : Controller
     {
         /// <summary>
