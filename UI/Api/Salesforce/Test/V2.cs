@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using TNDStudios.Data.Repository;
 using TNDStudios.Salesforce.OutboundReceiver.Objects;
 using TNDStudios.Tools.Soap.Objects;
 
@@ -14,12 +15,19 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V2
     public class SalesforceTestController : Controller
     {
         /// <summary>
+        /// Data repository
+        /// </summary>
+        private static IDataRepository<TestSalesforceObject> repository;
+
+        /// <summary>
         /// Default Constructor
         /// </summary>
         public SalesforceTestController()
         {
+            // Create a new repository if not already set up
+            repository = repository ?? new SqlDataRepository<TestSalesforceObject>();
         }
-        
+
         /// <summary>
         /// Provide an endpoint to recieve a soap notification message
         /// in a structure that recognises notifications from Salesforce
@@ -30,14 +38,17 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V2
         [HttpPost]
         public Boolean Post([FromBody]SoapMessage<SalesforceNotificationsBody<TestSalesforceObject>> message)
         {
+            Boolean result = true;
+
             // For each object do something
             message.Envelope.Body.Notifications.Items.ForEach(sfObject =>
             {
-                String email = sfObject.Get<String>("Email");
-                String email2 = (String)sfObject.Get(typeof(String), "Email");
+                Boolean thisResult = repository.Save(sfObject.SalesforceObject);
+                result = (!result) ? result : thisResult;
             }
             );
-            return true;
+
+            return result;
         }
     }
 }

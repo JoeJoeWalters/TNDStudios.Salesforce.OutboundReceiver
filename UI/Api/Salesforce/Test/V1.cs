@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using TNDStudios.Data.Repository;
 using TNDStudios.Salesforce.OutboundReceiver.Objects;
 using TNDStudios.Tools.Soap.Objects;
 
@@ -15,10 +16,17 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V1
     public class SalesforceTestController : Controller
     {
         /// <summary>
+        /// Data repository
+        /// </summary>
+        private static IDataRepository<TestSalesforceObject> repository;
+
+        /// <summary>
         /// Default Constructor
         /// </summary>
         public SalesforceTestController()
         {
+            // Create a new repository if not already set up
+            repository = repository ?? new SqlDataRepository<TestSalesforceObject>();
         }
         
         /// <summary>
@@ -32,10 +40,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V1
         public Boolean Post([FromBody]SoapMessage<SalesforceNotificationsBody<TestSalesforceObject>> message)
         {
             TestSalesforceObject sfObject = message.Envelope.Body.Notifications.Items[0].SalesforceObject;
-            String email = sfObject.Get<String>("Email");
-            String email2 = (String)sfObject.Get(typeof(String), "Email");
-
-            return true;
+            return repository.Save(sfObject);
         }
     }
 }
