@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using Dapper;
 using TNDStudios.Tools.Json.Objects;
@@ -21,6 +22,11 @@ namespace TNDStudios.Data.Repository
         public String InsertMapping { get; set; }
 
         /// <summary>
+        /// The insert mapping string
+        /// </summary>
+        public String SelectMapping { get; set; }
+
+        /// <summary>
         /// Default Constructor
         /// </summary>
         public SqlDataRepository()
@@ -30,6 +36,15 @@ namespace TNDStudios.Data.Repository
 
         public override List<T> Get()
         {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                try
+                {
+                    return (connection.Query<T>(SelectMapping)).ToList();
+                }
+                catch { }
+            }
+
             return new List<T>();
         }
 
@@ -39,7 +54,11 @@ namespace TNDStudios.Data.Repository
 
             using (var connection = new SqlConnection(ConnectionString))
             {
-                insertCount = connection.Execute(InsertMapping, data);
+                try
+                {
+                    insertCount = connection.Execute(InsertMapping, data);
+                }
+                catch { }
             }
 
             return (insertCount != 0);

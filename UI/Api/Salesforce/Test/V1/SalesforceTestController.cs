@@ -29,7 +29,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V1
             repository = repository ??
                 new SqlDataRepository<TestSalesforceObject>()
                 {
-                    ConnectionString = "Server=LAPTOP-0VTBLBTI;Database=TransactionRepository;User Id=TransactionUser;Password=password;",
+                    ConnectionString = @"Server=LAPTOP-0VTBLBTI;Database=TransactionRepository;User Id=TransactionUser;Password=password;",
                     InsertMapping = @"insert into dbo.Workers(Email, TR_ObjectPkId, TR_ApiVersion, TR_SourceSystem, TR_SourceType) values(@Email, @Id, 0.9, 'Salesforce', 'Lead')"
                 };
         }
