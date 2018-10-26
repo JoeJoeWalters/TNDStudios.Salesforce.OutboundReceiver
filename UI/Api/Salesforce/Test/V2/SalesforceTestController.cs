@@ -13,7 +13,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V2
     [ApiVersion("2.0")]
     [ApiController]
     [Route("api/v{api-version:apiVersion}/salesforce/test")]
-    public class SalesforceTestController : Controller
+    public class SalesforceTestController : VersionedControllerBase
     {
         /// <summary>
         /// Data repository
@@ -64,7 +64,7 @@ namespace TNDStudios.Salesforce.OutboundReceiver.Api.Salesforce.Test.V2
         /// </summary>
         /// <param name="message">The translated Soap request as an object</param>
         /// <returns>A success or failure response</returns>
-        [HttpGet]
+        [HttpGet]   
         [Produces(@"application/json")]
         [Route("{id}")]
         public List<TestSalesforceObject> Get(String Id)
