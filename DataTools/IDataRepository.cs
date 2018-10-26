@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Dapper;
-using Dapper.FluentMap;
 using TNDStudios.Tools.Json.Objects;
 
 namespace TNDStudios.Data.Repository
@@ -12,7 +10,8 @@ namespace TNDStudios.Data.Repository
     /// Interface to define the data repository pattern
     /// </summary>
     /// <typeparam name="T">The data type to be handled</typeparam>
-    public interface IDataRepository<T> where T : JsonBase
+    public interface IDataRepository<T> 
+        //where T : JsonBase
     {
         /// <summary>
         /// Connection string for the repository

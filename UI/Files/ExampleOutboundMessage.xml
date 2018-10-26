@@ -12,20 +12,23 @@
         <sObject xsi:type="sf:Lead" xmlns:sf="urn:sobject.enterprise.soap.sforce.com">
           <sf:Id>00QC000001M0aNoMAJ</sf:Id>
           <sf:Email>asd@asd1.com</sf:Email>
+          <sf:Name>Joe Walters</sf:Name>
         </sObject>
       </Notification>
       <Notification>
         <Id>04lC000001HKyQbIAL</Id>
         <sObject xsi:type="sf:Lead" xmlns:sf="urn:sobject.enterprise.soap.sforce.com">
           <sf:Id>00QC000001M0aNqMAJ</sf:Id>
-          <sf:Email>ads@asd3.com</sf:Email>
+          <sf:Email>ads@asd2.com</sf:Email>
+          <sf:Name>Wubble McBubble</sf:Name>
         </sObject>
       </Notification>
       <Notification>
         <Id>04lC000001HKyQaIAL</Id>
         <sObject xsi:type="sf:Lead" xmlns:sf="urn:sobject.enterprise.soap.sforce.com">
           <sf:Id>00QC000001M0aNpMAJ</sf:Id>
-          <sf:Email>asd@asd2.com</sf:Email>
+          <sf:Email>asd@asd3.com</sf:Email>
+          <sf:Name>Rainer Shine</sf:Name>
         </sObject>
       </Notification>
     </notifications>

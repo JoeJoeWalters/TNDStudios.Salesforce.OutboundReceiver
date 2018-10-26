@@ -9,8 +9,8 @@ namespace TNDStudios.Data.Repository
     /// Base implementation of the data repository pattern
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DataRepositoryBase<T> : IDataRepository<T> 
-        where T : JsonBase
+    public abstract class DataRepositoryBase<T> : IDataRepository<T> 
+        //where T : JsonBase
     {
         /// <summary>
         /// Hold the connection string
